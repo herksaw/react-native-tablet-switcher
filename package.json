@@ -1,0 +1,28 @@
+{
+  "name": "react-native-tablet-switcher",
+  "version": "0.0.2",
+  "description": "Tablet screen size switcher.",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [
+    "React",
+    "Native",
+    "Screen",
+    "Layout",
+    "Test",
+    "Debug",
+    "Tablet"
+  ],
+  "author": "Herks Aw",
+  "dependencies": {
+    "prop-types": "*"
+  },
+  "peerDependencies": {
+    "react-native": ">=0.43.0",
+    "react": "*"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "license": "ISC"
+}
