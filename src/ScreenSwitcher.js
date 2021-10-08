@@ -13,6 +13,8 @@ import {
 
 import deviceSizes from './deviceSizes';
 
+import ActionSheet from "react-native-actions-sheet";
+
 const styles = StyleSheet.create({
   buttonContainer: {position: 'absolute', right: 0, bottom: 0},
   buttonText: {padding: 5, color: 'white', backgroundColor: 'rgba(0,0,0,0.5)'},
@@ -68,7 +70,8 @@ function performResize(deviceInfo, deviceName, scaleToFit, scaleUp) {
 }
 
 // Disable if Production or Android (Android support coming later)
-const isActive = Platform.OS === 'ios' && __DEV__;
+// const isActive = Platform.OS === 'ios' && __DEV__;
+const isActive = __DEV__;
 
 // Remember real device dimensions
 const { width: device_width, height: device_height, fontScale: device_font_scale } = Dimensions.get('screen');
@@ -86,6 +89,8 @@ class ScreenSwitcher extends Component {
       return;
     }
 
+    // this.actionSheetRef = React.createRef();
+
     this.state = {screenSwitcherDeviceName: 'Default'};
 
     this.resize = () => {
@@ -95,7 +100,7 @@ class ScreenSwitcher extends Component {
 
       ActionSheetIOS.showActionSheetWithOptions(
         {
-          title: 'Simulate Device Screen Size',
+          title: 'Simulate Tablet Screen Size',
           options,
           cancelButtonIndex,
         },

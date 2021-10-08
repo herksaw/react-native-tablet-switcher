@@ -1,6 +1,6 @@
 {
   "name": "react-native-tablet-switcher",
-  "version": "0.0.3",
+  "version": "0.1.1",
   "description": "Tablet screen size switcher.",
   "main": "index.js",
   "scripts": {},
@@ -15,7 +15,8 @@
   ],
   "author": "Herks Aw",
   "dependencies": {
-    "prop-types": "*"
+    "prop-types": "*",
+    "react-native-actions-sheet": "0.5.4"
   },
   "peerDependencies": {
     "react-native": ">=0.43.0",
