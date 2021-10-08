@@ -1,6 +1,6 @@
 {
   "name": "react-native-tablet-switcher",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Tablet screen size switcher.",
   "main": "index.js",
   "scripts": {},

@@ -1,4 +1,4 @@
-# react-native-device-screen-switcher
+# react-native-tablet-switcher
 
 Testing your React Native UI layouts on different screen sizes can be quite time-consumning.
 
@@ -11,13 +11,13 @@ This library aims to make this much easier by allowing the run-time switching of
 # Usage
 
 ```
-npm i -S react-native-device-screen-switcher
+npm i -S react-native-tablet-switcher
 ```
 
 In your root-level component, wrap the root component returned by `render()` with `<ScreenSwitcher>`.
 
 ```js
-import ScreenSwitcher from 'react-native-device-screen-switcher';
+import ScreenSwitcher from 'react-native-tablet-switcher';
 
 class MyRoot extends Component {
   ...
