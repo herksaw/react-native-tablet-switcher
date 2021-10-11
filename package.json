@@ -1,9 +1,13 @@
 {
   "name": "react-native-tablet-switcher",
-  "version": "0.1.1",
+  "version": "0.2.1",
   "description": "Tablet screen size switcher.",
   "main": "index.js",
   "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/herksaw/react-native-tablet-switcher"
+  },
   "keywords": [
     "React",
     "Native",
@@ -14,6 +18,10 @@
     "Tablet"
   ],
   "author": "Herks Aw",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/calvium/react-native-tablet-switcher/issues"
+  },
   "dependencies": {
     "prop-types": "*",
     "react-native-actions-sheet": "0.5.4"
@@ -24,6 +32,5 @@
   },
   "directories": {
     "doc": "docs"
-  },
-  "license": "ISC"
+  }
 }

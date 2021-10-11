@@ -84,7 +84,7 @@ const deviceSizes = {
       height: 1668,
       scale: 2,
     },
-  },
+  },  
   'iPad Pro 10.2 (10.2)': {
     windowPhysicalPixels: {
       width: 2160,
@@ -100,9 +100,14 @@ const deviceSizes = {
   //   },
   // },
   'Pixel C (10.2)': {
+    // windowPhysicalPixels: {
+    //   width: 1600,
+    //   height: 1200,
+    //   scale: 2,
+    // },
     windowPhysicalPixels: {
-      width: 1600,
-      height: 1200,
+      width: 2560,
+      height: 1800,
       scale: 2,
     },
   },
@@ -146,6 +151,13 @@ const deviceSizes = {
       width: 2048,
       height: 1536,
       scale: 2,
+    },
+  },
+  'Galaxy Tab A7 Lite (8.7)': {
+    windowPhysicalPixels: {
+      width: 1340,
+      height: 800,
+      scale: 1,
     },
   },
   'ZenPad 8.0 (8.0)': {

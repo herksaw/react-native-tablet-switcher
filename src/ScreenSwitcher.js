@@ -1,4 +1,4 @@
-import React, {Component, Children} from 'react';
+import React, { Component, Children } from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -9,15 +9,21 @@ import {
   ActionSheetIOS,
   Text,
   Platform,
+  FlatList,
+  TouchableOpacity,
 } from 'react-native';
 
 import deviceSizes from './deviceSizes';
 
 import ActionSheet from "react-native-actions-sheet";
 
+import {
+  FlatList as FlatListGH,
+} from 'react-native-gesture-handler';
+
 const styles = StyleSheet.create({
-  buttonContainer: {position: 'absolute', right: 0, bottom: 0},
-  buttonText: {padding: 5, color: 'white', backgroundColor: 'rgba(0,0,0,0.5)'},
+  buttonContainer: { position: 'absolute', right: 0, bottom: 0 },
+  buttonText: { padding: 5, color: 'white', backgroundColor: 'rgba(0,0,0,0.5)' },
   outer: {
     flex: 1,
     backgroundColor: '#003355',
@@ -64,7 +70,13 @@ function performResize(deviceInfo, deviceName, scaleToFit, scaleUp) {
   windowPhysicalPixels.deviceName = deviceName;
 
   // Force RN to re-set the Dimensions sizes
-  Dimensions.set({windowPhysicalPixels});
+  if (Platform.OS === 'ios') {
+    Dimensions.set({ windowPhysicalPixels });
+  }
+  else {
+    Dimensions.set({ windowPhysicalPixels });
+    // Dimensions.set({ screenPhysicalPixels: windowPhysicalPixels });
+  }  
   console.log(`Resizing window to physical pixels ${width}x${height}${infoSuffix}`, { ...windowPhysicalPixels });
   // TODO: Android uses screenPhysicalPixels - see https://github.com/facebook/react-native/blob/master/Libraries/Utilities/Dimensions.js
 }
@@ -89,9 +101,10 @@ class ScreenSwitcher extends Component {
       return;
     }
 
-    // this.actionSheetRef = React.createRef();
+    this.actionSheetRef = React.createRef();
+    this.scrollViewRef = React.createRef();
 
-    this.state = {screenSwitcherDeviceName: 'Default'};
+    this.state = { screenSwitcherDeviceName: 'Default', deviceNames: Object.keys(deviceSizes) };
 
     this.resize = () => {
       const deviceNames = Object.keys(deviceSizes);
@@ -118,10 +131,49 @@ class ScreenSwitcher extends Component {
 
           performResize(deviceInfo, deviceName, this.props.scaleToFit, this.props.scaleUp);
 
-          this.setState({screenSwitcherDeviceName: deviceName}); // force re-render of this component
+          this.setState({ screenSwitcherDeviceName: deviceName }); // force re-render of this component
         }
       );
     };
+
+    this.renderDevices = this.renderDevices.bind(this);
+
+    // this.setState({
+    //   deviceNames: Object.keys(deviceSizes),
+    // });
+  }
+
+  renderDevices({ item, index }) {
+    const self = this;
+
+    return (
+      <TouchableOpacity
+        style={{
+          // backgroundColor: 'red',
+          width: '100%',
+          height: 32,
+
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+        onPress={() => {
+          const deviceName = self.state.deviceNames[index];
+          const deviceInfo = deviceSizes[deviceName];
+
+          if (!deviceInfo) {
+            return;
+          }
+
+          performResize(deviceInfo, deviceName, self.props.scaleToFit, self.props.scaleUp);
+
+          self.setState({ screenSwitcherDeviceName: deviceName }); // force re-render of this component
+
+          this.actionSheetRef && this.actionSheetRef.current && this.actionSheetRef.current.setModalVisible(false);
+        }}>
+        <Text>{item}</Text>
+      </TouchableOpacity>
+    );
   }
 
   render() {
@@ -131,24 +183,70 @@ class ScreenSwitcher extends Component {
     }
 
     // In dev mode, resize the main content
-    const {children, hideButton} = this.props;
+    const { children, hideButton } = this.props;
 
-    const {width, height, fontScale} = Dimensions.get('window');
-    console.log({width, height, fontScale, device_font_scale});
+    const { width, height, fontScale } = Dimensions.get('window');
+    console.log({ width, height, fontScale, device_font_scale });
+
+    console.log('this.state.deviceNames');
+    console.log(this.state.deviceNames);
 
     return (
-      <View style={styles.outer}>
-        <View style={{width, height}}>
-          {children}
-        </View>
-        {hideButton
-          ? undefined
-          : <TouchableHighlight style={styles.buttonContainer} onPress={this.resize}>
-              <Text style={styles.buttonText}>
-                {this.state.screenSwitcherDeviceName || 'Switch'}
-              </Text>
-            </TouchableHighlight>}
-      </View>
+      <>
+        {
+          Platform.OS === 'ios'
+            ?
+            <View style={styles.outer}>
+              <View style={{ width, height }}>
+                {children}
+              </View>
+              {hideButton
+                ? undefined
+                : <TouchableHighlight style={styles.buttonContainer} onPress={this.resize}>
+                  <Text style={styles.buttonText}>
+                    {this.state.screenSwitcherDeviceName || 'Switch'}
+                  </Text>
+                </TouchableHighlight>}
+            </View>
+            :
+            <View style={styles.outer}>
+              <View style={{ width, height }}>
+                {children}
+              </View>
+              {hideButton
+                ? undefined
+                : <TouchableHighlight style={styles.buttonContainer} onPress={() => {
+                  this.actionSheetRef && this.actionSheetRef.current && this.actionSheetRef.current.setModalVisible(true);
+                }}>
+                  <Text style={styles.buttonText}>
+                    {this.state.screenSwitcherDeviceName || 'Switch'}
+                  </Text>
+                </TouchableHighlight>}
+
+              <ActionSheet ref={this.actionSheetRef}>
+                <FlatListGH
+                  ref={this.scrollViewRef}
+                  nestedScrollEnabled={true}
+                  onScrollEndDrag={() =>
+                    actionSheetRef.current?.handleChildScrollEnd()
+                  }
+                  onScrollAnimationEnd={() =>
+                    actionSheetRef.current?.handleChildScrollEnd()
+                  }
+                  onMomentumScrollEnd={() =>
+                    actionSheetRef.current?.handleChildScrollEnd()
+                  }
+                  data={this.state.deviceNames || []}
+                  renderItem={this.renderDevices}
+                  style={{
+                    // backgroundColor: 'blue',
+                    // height: 320,
+                  }}
+                />
+              </ActionSheet>
+            </View>
+        }
+      </>
     );
   }
 }
@@ -156,9 +254,9 @@ class ScreenSwitcher extends Component {
 if (isActive) {
   // Use context to force re-renders for our children when screen is resized. Ensures that images are rendered with
   // correct density (2x, @3x)
-  ScreenSwitcher.prototype.getChildContext = function() {
-    const {screenSwitcherDeviceName} = this.state;
-    return {screenSwitcherDeviceName};
+  ScreenSwitcher.prototype.getChildContext = function () {
+    const { screenSwitcherDeviceName, deviceNames } = this.state;
+    return { screenSwitcherDeviceName, deviceNames };
   };
 
   ScreenSwitcher.childContextTypes = {
@@ -166,6 +264,7 @@ if (isActive) {
      * Used to force re-render of children when screen is resized
      */
     screenSwitcherDeviceName: PropTypes.string,
+    deviceNames: PropTypes.array,
   };
 }
 
