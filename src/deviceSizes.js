@@ -50,162 +50,146 @@ const deviceSizes = {
   //  },
   // },
 
-  'iPad Pro 12.9 (12.9)': {
+  'Galaxy Z Fold 2 (7.6)': {
     windowPhysicalPixels: {
-      width: 2732,
-      height: 2048,
+      width: 1768,
+      height: 2208,
       scale: 2,
     },
   },
-  'Galaxy Note Pro 12.2 (12.2)': {
+
+  'Galaxy Note20 Ultra (6.9)': {
     windowPhysicalPixels: {
-      width: 2560,
-      height: 1600,
-      scale: 2,
-    },
-  },
-  'iPad Pro 11 (11.0)': {
-    windowPhysicalPixels: {
-      width: 2388,
-      height: 1668,
-      scale: 2,
-    },
-  },
-  'iPad Pro Air 2020 (10.9)': {
-    windowPhysicalPixels: {
-      width: 2360,
-      height: 1640,
-      scale: 2,
-    },
-  },
-  'iPad Pro 10.5 (10.5)': {
-    windowPhysicalPixels: {
-      width: 2224,
-      height: 1668,
-      scale: 2,
-    },
-  },  
-  'iPad Pro 10.2 (10.2)': {
-    windowPhysicalPixels: {
-      width: 2160,
-      height: 1620,
-      scale: 2,
-    },
-  },  
-  // 'iPad Pro Air 2019 (10.5)': {
-  //   windowPhysicalPixels: {
-  //     width: 2224,
-  //     height: 1668,
-  //     scale: 2,
-  //   },
-  // },
-  'Pixel C (10.2)': {
-    // windowPhysicalPixels: {
-    //   width: 1600,
-    //   height: 1200,
-    //   scale: 2,
-    // },
-    windowPhysicalPixels: {
-      width: 2560,
-      height: 1800,
-      scale: 2,
-    },
-  },
-  'Xperia Z4 (10.1)': {
-    windowPhysicalPixels: {
-      width: 2560,
-      height: 1600,
+      width: 1440,
+      height: 3088,
       scale: 3,
     },
   },
-  'Yoga 10 HD+ (10.1)': {
+
+  'Galaxy S20 Ultra (6.9)': {
     windowPhysicalPixels: {
-      width: 1920,
-      height: 1200,
-      scale: 1,
+      width: 1440,
+      height: 3200,
+      scale: 3,
     },
   },
-  'Venue 10 (10.1)': {
+
+  'Galaxy Note10+ (6.8)': {
     windowPhysicalPixels: {
-      width: 1280,
-      height: 800,
+      width: 1440,
+      height: 3040,
+      scale: 3,
+    },
+  },
+
+  'Redmi Note 9 Pro (6.7)': {
+    windowPhysicalPixels: {
+      width: 1080,
+      height: 2400,
       scale: 2,
     },
   },
-  'Fire HD 10 (10.0)': {
+
+  'iPhone 12 Pro Max (6.7)': {
     windowPhysicalPixels: {
-      width: 1280,
-      height: 800,
-      scale: 1,
+      width: 1284,
+      height: 2778,
+      scale: 3,
     },
   },
-  'iPad Air 2 (9.7)': {
+
+  'Huawei Mate 20 (6.5)': {
     windowPhysicalPixels: {
-      width: 2048,
-      height: 1536,
+      width: 1080,
+      height: 2244,
       scale: 2,
     },
   },
-  'Nexus 9 (8.9)': {
+
+  'iPhone XS Max (6.5)': {
     windowPhysicalPixels: {
-      width: 2048,
-      height: 1536,
+      width: 1242,
+      height: 2688,
+      scale: 3,
+    },
+  },
+
+  'Redmi Note 8 Pro (6.5)': {
+    windowPhysicalPixels: {
+      width: 1080,
+      height: 2340,
       scale: 2,
     },
   },
-  'Galaxy Tab A7 Lite (8.7)': {
+
+  'Nova 7i (6.4)': {
     windowPhysicalPixels: {
-      width: 1340,
-      height: 800,
-      scale: 1,
-    },
-  },
-  'ZenPad 8.0 (8.0)': {
-    windowPhysicalPixels: {
-      width: 1280,
-      height: 800,
-      scale: 1,
-    },
-  },
-  'iPad Mini 4 (7.9)': {
-    windowPhysicalPixels: {
-      width: 2048,
-      height: 1536,
+      width: 1080,
+      height: 2310,
       scale: 2,
     },
   },
-  'Galaxy Tab 2 (7.7)': {
+
+  'Galaxy Note10 (6.3)': {
     windowPhysicalPixels: {
-      width: 600,
-      height: 1024,
+      width: 1080,
+      height: 2280,
+      scale: 3,
+    },
+  },
+
+  'iPhone XR (6.1)': {
+    windowPhysicalPixels: {
+      width: 828,
+      height: 1792,
       scale: 2,
     },
   },
-  'Nexus 7 (7.0)': {
+
+  'iPhone 12 (6.1)': {
     windowPhysicalPixels: {
-      width: 1280,
-      height: 800,
+      width: 1170,
+      height: 2532,
+      scale: 3,
+    },
+  },
+
+  'iPhone X (5.8)': {
+    windowPhysicalPixels: {
+      width: 1125,
+      height: 2436,
+      scale: 3,
+    },
+  },
+
+  'Galaxy Note5 (5.7)': {
+    windowPhysicalPixels: {
+      width: 1440,
+      height: 2560,
+      scale: 3,
+    },
+  },
+
+  'Mi Note (5.7)': {
+    windowPhysicalPixels: {
+      width: 1080,
+      height: 1920,
       scale: 2,
     },
   },
-  '7 Plus (7.0)': {
+
+  'Galaxy Note (5.3)': {
     windowPhysicalPixels: {
-      width: 1024,
-      height: 600,
-      scale: 1,
+      width: 800,
+      height: 1280,
+      scale: 2,
     },
   },
-  '7 Voice Tab (6.9)': {
+
+  'Apple iPhone 8 (4.7)': {
     windowPhysicalPixels: {
-      width: 1024,
-      height: 600,
-      scale: 1,
-    },
-  },
-  'Fire HD 6 (6.0)': {
-    windowPhysicalPixels: {
-      width: 1280,
-      height: 800,
+      width: 750,
+      height: 1334,
       scale: 2,
     },
   },

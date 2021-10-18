@@ -33,9 +33,15 @@ const styles = StyleSheet.create({
 /**
  * Force resize of Dimensions.get by using the setter.
  */
-function performResize(deviceInfo, deviceName, scaleToFit, scaleUp) {
+function performResize(deviceInfo, deviceName, scaleToFit, scaleUp, landscapeMode) {
   // Make sure you are using copy of deviceInfo.windowPhysicalPixels
-  const windowPhysicalPixels = { ...deviceInfo.windowPhysicalPixels };
+  const windowPhysicalPixels = { 
+    ...deviceInfo.windowPhysicalPixels,
+    ...landscapeMode && {
+      width: deviceInfo.windowPhysicalPixels.height,
+      height: deviceInfo.windowPhysicalPixels.width,
+    },
+  };
   const { width, height, scale } = windowPhysicalPixels;
   const w_points = Math.round(width / scale); // round because of JS
   const h_points = Math.round(height / scale); // round because of JS
@@ -113,7 +119,7 @@ class ScreenSwitcher extends Component {
 
       ActionSheetIOS.showActionSheetWithOptions(
         {
-          title: 'Simulate Tablet Screen Size',
+          title: 'Simulate Phone Screen Size',
           options,
           cancelButtonIndex,
         },
@@ -129,7 +135,7 @@ class ScreenSwitcher extends Component {
             return;
           }
 
-          performResize(deviceInfo, deviceName, this.props.scaleToFit, this.props.scaleUp);
+          performResize(deviceInfo, deviceName, this.props.scaleToFit, this.props.scaleUp, this.props.landscapeMode);
 
           this.setState({ screenSwitcherDeviceName: deviceName }); // force re-render of this component
         }
@@ -165,7 +171,7 @@ class ScreenSwitcher extends Component {
             return;
           }
 
-          performResize(deviceInfo, deviceName, self.props.scaleToFit, self.props.scaleUp);
+          performResize(deviceInfo, deviceName, self.props.scaleToFit, self.props.scaleUp, self.props.landscapeMode);
 
           self.setState({ screenSwitcherDeviceName: deviceName }); // force re-render of this component
 
@@ -272,6 +278,7 @@ ScreenSwitcher.defaultProps = {
   hideButton: false,
   scaleToFit: false,
   scaleUp: false,
+  landscapeMode: false,
 };
 
 ScreenSwitcher.propTypes = {
@@ -279,6 +286,7 @@ ScreenSwitcher.propTypes = {
   hideButton: PropTypes.bool,
   scaleToFit: PropTypes.bool,
   scaleUp: PropTypes.bool,
+  landscapeMode: PropTypes.bool,
 };
 
 export default ScreenSwitcher;
