@@ -234,13 +234,13 @@ class ScreenSwitcher extends Component {
                   ref={this.scrollViewRef}
                   nestedScrollEnabled={true}
                   onScrollEndDrag={() =>
-                    actionSheetRef.current?.handleChildScrollEnd()
+                    this.actionSheetRef.current?.handleChildScrollEnd()
                   }
                   onScrollAnimationEnd={() =>
-                    actionSheetRef.current?.handleChildScrollEnd()
+                    this.actionSheetRef.current?.handleChildScrollEnd()
                   }
                   onMomentumScrollEnd={() =>
-                    actionSheetRef.current?.handleChildScrollEnd()
+                    this.actionSheetRef.current?.handleChildScrollEnd()
                   }
                   data={this.state.deviceNames || []}
                   renderItem={this.renderDevices}
