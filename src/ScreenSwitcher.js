@@ -89,7 +89,8 @@ function performResize(deviceInfo, deviceName, scaleToFit, scaleUp, landscapeMod
 
 // Disable if Production or Android (Android support coming later)
 // const isActive = Platform.OS === 'ios' && __DEV__;
-const isActive = __DEV__;
+// const isActive = __DEV__;
+const isActive = true;
 
 // Remember real device dimensions
 const { width: device_width, height: device_height, fontScale: device_font_scale } = Dimensions.get('screen');
